@@ -5,16 +5,23 @@ from time import perf_counter
 
 t1=perf_counter()
 
-url="https://www.blockchain.com/btc/address/1CVkuxTHDozNTg46An1FbvJnC2WXwivvFi"
+url="https://www.blockchain.com/btc/address/1BgfYUSxJ9cKjF5PJ9jdq2S7oyAkkDSQNt"
 
 page=req.get(url)
 
 
 soup = BeautifulSoup(page.content, 'html.parser')
 
-a=soup.find('span',class_="sc-1ryi78w-0 gCzMgE sc-16b9dsl-1 kUAhZx u3ufsr-0 fGQJzg")
+a=soup.find_all('span',class_="sc-1ryi78w-0 gCzMgE sc-16b9dsl-1 kUAhZx u3ufsr-0 fGQJzg")
 
-print(a)
+count=0
+for i in a:
+    for j in i:
+        count+=1
+        if(count==5):
+            print(i.contents[0].split(" ")[0])
+        
+
 
 # for i in a.find_all('span',class_='grey'):
 #     print(float(i.contents[0]))

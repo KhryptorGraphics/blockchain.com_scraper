@@ -1,2 +1,2 @@
 # blockchain.com_scraper
-scraping the btc address balance using beautiful soup
+find the btc address balance from blockchain.com using beautiful soup

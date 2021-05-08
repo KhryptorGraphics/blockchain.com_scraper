@@ -1,42 +1,31 @@
-# beautiful soup
 from bs4 import BeautifulSoup
 import requests as req
 from time import perf_counter
 from time import sleep
 
 def main(address):
+
     t1=perf_counter()
 
     url="https://www.blockchain.com/btc/address/"+address
-
     page=req.get(url)
 
 
     soup = BeautifulSoup(page.content, 'html.parser')
 
-    a=soup.find_all('span',class_="sc-1ryi78w-0 gCzMgE sc-16b9dsl-1 kUAhZx u3ufsr-0 fGQJzg")
+    a=soup.find_all('span',class_="sc-1ryi78w-0 cILyoi sc-16b9dsl-1 ZwupP u3ufsr-0 eQTRKC")  # span had changed 
 
     count=0
     for i in a:
         for j in i:
             count+=1
-            if(count==5):
+            if(count==6):
                 # print(i.contents[0].split(" ")[0])
 
                 print("balance is "+i.contents[0].split(" ")[0]+ " for "+address)
-                if float(i.contents[0].split(" ")[0]):
-                    print(address)
-                    exit()
-            
-
-
-    # for i in a.find_all('span',class_='grey'):
-    #     print(float(i.contents[0]))
-    #     break
-
-
+                if float(i.contents[0].split(" ")[0]):  #comment lines 26 and 27 if u dont want to stop if the balance of that particular address is greater than 0
+                    input("continue ??") 
     t2=perf_counter()
-
 
     print("{0} time elaspsed".format(str(t2-t1)))
     # print(a)
@@ -55,5 +44,3 @@ with open("address.txt","r+") as r:
         print("count :"+str(count2))
     
         
-    
-    
